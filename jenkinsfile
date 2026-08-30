@@ -24,7 +24,7 @@ pipeline {
             steps{
                 sh '''
                     docker stop $CONTAINER_NAME || true
-                    docker rm $CONTAINER-name || true
+                    docker rm $CONTAINER-NAME || true
                     '''
             }
         }
