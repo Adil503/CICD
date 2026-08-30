@@ -28,7 +28,7 @@ pipeline {
                     '''
             }
         }
-        stage('DOcker Container Run'){
+        stage('Doker Container Run'){
             steps{
                 sh '''
                    docker run -d -p ${PORT}:${PORT}
