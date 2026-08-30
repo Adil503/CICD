@@ -8,7 +8,7 @@ pipeline {
         PORT = "3000"
     }
 
-    Stages{
+    stages{
         stage('Clone Repo'){
             steps{
                 git branch: 'main' , url: 'https://github.com/Adil503/CICD.git'
