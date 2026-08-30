@@ -39,8 +39,8 @@ pipeline {
         stage('Sedn Email Notification'){
             steps{
                     emailtext(
-                        subject: "NestJS App Deployed Succesfullon EC2"
-                        Body: "Your Nest JS app is deployed! http://16.170.206.60:${PORT}/"
+                        subject: "NestJS App Deployed Succesfullon EC2",
+                        Body: "Your Nest JS app is deployed! http://16.170.206.60:${PORT}/",
                         to: "${EMAIL}"
                     )
                     
