@@ -1,0 +1,51 @@
+pipeline {
+    agent any
+
+    environment {
+        CONTAINER_NAME = "nestjs-app"
+        IMAGE_NAME = "nestjs-Image"
+        EMAIL = "adilkale12@gmail.com"
+        PORT = "3000"
+    }
+
+    Stages{
+        stage('Clone Repo'){
+            steps{
+                git branch: 'main' , url: 'https://github.com/Adil503/CICD.git'
+            }
+        }
+        
+        stage('Build Docker Image'){
+            steps{
+                sh 'docker build -t $IMAGE_NAME'
+            }
+        }
+        stage('Stop & Remove Previouse Container'){
+            steps{
+                sh '''
+                    docker stop $CONTAINER_NAME || true
+                    docker rm $CONTAINER-name || true
+                    '''
+            }
+        }
+        stage('DOcker Container Run'){
+            steps{
+                sh '''
+                   docker run -d -p ${PORT}:${PORT}
+                   --name $CONTAINER_NAME $IMAGE_NAME
+                    '''
+            }
+        }
+        stage('Sedn Email Notification'){
+            steps{
+                    emailtext(
+                        subject: "NestJS App Deployed Succesfullon EC2"
+                        Body: "Your Nest JS app is deployed! http://16.170.206.60:${PORT}/"
+                        to: "${EMAIL}"
+                    )
+                    
+            }
+        }
+
+    }
+}
